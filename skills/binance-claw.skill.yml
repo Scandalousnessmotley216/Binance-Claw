@@ -1,0 +1,128 @@
+# binance-claw.skill.yml
+# OpenClaw skill definition for Binance-Claw
+# Drop this file in your OpenClaw skills directory
+
+name: binance-claw
+version: "1.0.0"
+description: >
+  Lightning-fast Binance price sniper and real-time monitor.
+  Watch crypto prices, set price alerts (claws), inspect order
+  books, and trigger automation on price events.
+author: deepcon3
+repository: https://github.com/deepcon3/Binance-Claw
+license: MIT
+tags:
+  - crypto
+  - binance
+  - trading
+  - finance
+  - alerts
+  - sniper
+
+runtime:
+  type: binary
+  binary: binance-claw
+  # On Windows: binance-claw.exe
+
+install:
+  # Linux / macOS
+  unix: |
+    curl -fsSL https://raw.githubusercontent.com/deepcon3/Binance-Claw/main/scripts/install.sh | bash
+  # Windows (PowerShell)
+  windows: |
+    irm https://raw.githubusercontent.com/deepcon3/Binance-Claw/main/scripts/install.ps1 | iex
+
+commands:
+  - name: price
+    description: Get current price for a trading pair
+    usage: "binance-claw price <SYMBOL>"
+    examples:
+      - "binance-claw price BTCUSDT"
+      - "binance-claw price ETHUSDT --json"
+    openclaw_flags:
+      - "--openclaw"
+
+  - name: watch
+    description: Watch a symbol's price in real-time via WebSocket
+    usage: "binance-claw watch <SYMBOL> [--interval MS] [--json] [--rest]"
+    examples:
+      - "binance-claw watch BTCUSDT"
+      - "binance-claw watch SOLUSDT --json"
+
+  - name: claw
+    description: Set a price alert trigger
+    usage: "binance-claw claw <SYMBOL> <above|below|PERCENT%> <PRICE> [--once] [--webhook URL]"
+    examples:
+      - "binance-claw claw BTCUSDT above 70000"
+      - "binance-claw claw ETHUSDT below 3000 --once"
+      - "binance-claw claw BTCUSDT 5% 65000 --webhook https://example.com/hook"
+
+  - name: stats
+    description: Show 24h ticker statistics
+    usage: "binance-claw stats <SYMBOL> [--json]"
+    examples:
+      - "binance-claw stats BTCUSDT"
+      - "binance-claw stats SOLUSDT --json"
+
+  - name: book
+    description: Display order book depth
+    usage: "binance-claw book <SYMBOL> [--limit N] [--json]"
+    examples:
+      - "binance-claw book BTCUSDT --limit 10"
+
+  - name: symbols
+    description: List available trading pairs
+    usage: "binance-claw symbols [--quote ASSET] [--json]"
+    examples:
+      - "binance-claw symbols --quote USDT"
+
+  - name: ping
+    description: Check Binance API connectivity and latency
+    usage: "binance-claw ping"
+
+  - name: skill
+    description: Output the OpenClaw skill manifest as JSON
+    usage: "binance-claw skill --json"
+
+events:
+  - name: price_above
+    description: Price crossed above the specified target
+    payload:
+      symbol: string
+      triggered_price: float
+      target_price: float
+      triggered_at: datetime
+
+  - name: price_below
+    description: Price dropped below the specified target
+    payload:
+      symbol: string
+      triggered_price: float
+      target_price: float
+      triggered_at: datetime
+
+  - name: percent_change
+    description: Price changed by specified percentage
+    payload:
+      symbol: string
+      triggered_price: float
+      target_price: float
+      percent: float
+      triggered_at: datetime
+
+environment:
+  optional:
+    BINANCE_API_KEY: Binance API key (for signed endpoints)
+    BINANCE_API_SECRET: Binance API secret
+    BINANCE_API_URL: Custom API base URL (for testnet)
+    BINANCE_CLAW_LOG: Log level (error|warn|info|debug|trace)
+
+openclaw:
+  protocol: "1.0"
+  output_format: json
+  streaming: true
+  global_flags:
+    - name: "--openclaw"
+      description: "Force OpenClaw JSON output format"
+    - name: "--quiet"
+      description: "Suppress banner"
